@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+
+    "name": "SynoScrape",
+    "description": "Provides synonyms with just a Ctrl + R-Click!",
+    "version": "1.0",
+
+    "permissions": [
+        "contextMenus"
+    ],
+    
+    "background": {
+        "scripts": ["contextLaunch.js"]
+    }
+}
