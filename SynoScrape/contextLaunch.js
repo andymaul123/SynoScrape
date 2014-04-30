@@ -1,4 +1,4 @@
-/*
+
 chrome.contextMenus.create({
     "title": "Synonyms", 
     "contexts":["selection"],
@@ -7,26 +7,15 @@ chrome.contextMenus.create({
 var selectedText;
 
 function genericOnClick(onClickData) {
-    selectedText = onClickData.selectionText;
-    console.log(selectedText);
-//begin ajax request
-    $('#container').load('http://google.com'); // SERIOUSLY!
- 
-    $.ajax({
-        url: 'http://news.bbc.co.uk',
-        type: 'GET',
-        success: function(res) {
-            var headline = $(res.responseText).find('a.tsh').text();
-            alert(headline);
+    //selectedText = onClickData.selectionText;
+    //console.log(selectedText);
+
+    $.get("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.thesaurus.com%2Fbrowse%2Fbright%22", function(data){useReturnData(data);}, 'xml');
+
+    function useReturnData(data){
+        for(i=0; i<=4; i++) {
+            foundItem = $(data).find('#synonyms-0 .relevancy-list ul:first li:nth-child(' + (i+1) +') a span.text').text();
+            console.log(foundItem);
         }
-    });
- 
+    };
 };
-*/
-
-$(document).ready(function() {
-    requestCrossDomain('http://www.cnn.com', function(results) {
-       $('#container').html(results);
-});
-
-})
