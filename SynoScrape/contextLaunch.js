@@ -7,10 +7,9 @@ chrome.contextMenus.create({
 var selectedText;
 
 function genericOnClick(onClickData) {
-    //selectedText = onClickData.selectionText;
-    //console.log(selectedText);
+    selectedText = onClickData.selectionText;
 
-    $.get("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.thesaurus.com%2Fbrowse%2Fbright%22", function(data){useReturnData(data);}, 'xml');
+    $.get("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.thesaurus.com%2Fbrowse%2F" + selectedText + "%22", function(data){useReturnData(data);}, 'xml');
 
     function useReturnData(data){
         for(i=0; i<=4; i++) {
