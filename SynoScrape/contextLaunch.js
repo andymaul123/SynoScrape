@@ -1,19 +1,4 @@
-
-
-var parent = chrome.contextMenus.create({
-    "id": "SynoParent",
-    "title": "Generate Synonyms",
-    "contexts":["selection"],
-    "onclick": genericOnClick
-    });
-/*
-var child1 = chrome.contextMenus.create({
-    "id": "SynoChild1",
-    "title": " ",
-    "parentId": " ",
-    "contexts":["selection"]
-});
-*/
+var tabID;
 var selectedText;
 var trimmedText;
 var cleanedText;
@@ -21,8 +6,38 @@ var queryText;
 var stringContainsSpaces;
 var items = [];
 
+var parent = chrome.contextMenus.create({
+    "id": "SynoParent",
+    "title": "Generate Synonyms",
+    "contexts":["selection"],
+    "onclick": genericOnClick
+    });
+
+chrome.tabs.onCreated.addListener(function() {
+    
+    chrome.tabs.getSelected(null, function(tab) { 
+            tabID = tab.id;
+            //console.log(tabID);
+     })
+
+    if (tabID) {
+        chrome.tabs.executeScript(tabID, {file: "script.js"});
+    }
+});
+
+
+var child1 = chrome.contextMenus.create({
+    "id": "SynoChild1",
+    "title": " ",
+    "parentId": " ",
+    "contexts":["selection"]
+});
+
+
 function genericOnClick(onClickData) {
 //Start
+
+    items = [];
     selectedText = onClickData.selectionText;
     trimmedText = selectedText.replace(/[\.,\/#!$%\^&\*;:{}=_`~()]/g,"");
     $.trim(trimmedText);
@@ -49,17 +64,16 @@ function genericOnClick(onClickData) {
             console.log(foundItem);
         }
         console.info(items);
-        //updateContext();
+        updateContext();
     };
-    /*
+    
     function updateContext() {
         chrome.contextMenus.create({
             "id": "SynoChild1",
-            "title": "Child 1 is here",
+            "title": items[0],
             "parentId": "SynoParent",
             "contexts":["selection"]
         });
     };
-    */
 //End
 };
