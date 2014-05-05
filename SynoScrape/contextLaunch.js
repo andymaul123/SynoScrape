@@ -36,7 +36,7 @@ var child1 = chrome.contextMenus.create({
 
 function genericOnClick(onClickData) {
 //Start
-
+    selectedText = " ";
     items = [];
     selectedText = onClickData.selectionText;
     trimmedText = selectedText.replace(/[\.,\/#!$%\^&\*;:{}=_`~()]/g,"");
@@ -68,7 +68,7 @@ function genericOnClick(onClickData) {
     };
     
     function updateContext() {
-        chrome.contextMenus.create({
+        chrome.contextMenus.update( { 
             "id": "SynoChild1",
             "title": items[0],
             "parentId": "SynoParent",
