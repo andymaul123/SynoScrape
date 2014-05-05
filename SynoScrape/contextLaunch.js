@@ -1,4 +1,4 @@
-var tabID;
+/*var tabID;
 var selectedText;
 var trimmedText;
 var cleanedText;
@@ -7,7 +7,7 @@ var stringContainsSpaces;
 var items = [];
 
 var parent = chrome.contextMenus.create({
-    "id": "SynoParent",
+    "id": "SynoStart",
     "title": "Generate Synonyms",
     "contexts":["selection"],
     "onclick": genericOnClick
@@ -25,17 +25,9 @@ chrome.tabs.onCreated.addListener(function() {
     }
 });
 
-
-var child1 = chrome.contextMenus.create({
-    "id": "SynoChild1",
-    "title": " ",
-    "parentId": " ",
-    "contexts":["selection"]
-});
-
-
 function genericOnClick(onClickData) {
 //Start
+    chrome.storage.local.set({'wasClicked': true});
     selectedText = " ";
     items = [];
     selectedText = onClickData.selectionText;
@@ -68,12 +60,58 @@ function genericOnClick(onClickData) {
     };
     
     function updateContext() {
-        chrome.contextMenus.update( { 
-            "id": "SynoChild1",
-            "title": items[0],
-            "parentId": "SynoParent",
-            "contexts":["selection"]
+        chrome.contextMenus.remove("SynoStart");
+        chrome.contextMenus.create({
+            "id": "SynoParent",
+            "title": "Synonyms for: " + queryText,
+            "contexts":["selection"],
+            "onclick": genericOnClick
         });
+        for(var j = 0; j < items.length; j++) {
+                chrome.contextMenus.create({
+                    "id": "SynoChild" + j,
+                    "title": items[j],
+                    "parentId": "SynoParent",
+                    "contexts":["selection"]
+                });
+        }
+
     };
 //End
 };
+*/
+var tabID;
+var name;
+chrome.tabs.onCreated.addListener(function() {
+    chrome.storage.local.set({'wasFired': false});
+    chrome.tabs.getSelected(null, function(tab) { 
+            tabID = tab.id;
+            console.log(tabID);
+     })
+
+    if (tabID) {
+        console.log("script should be working...");
+        chrome.tabs.executeScript(tabID, {file: "script.js"});
+    }
+});
+
+
+chrome.storage.onChanged.addListener(function() {
+    chrome.storage.local.set({'wasFired': false});
+    console.log("event firing");
+    var master = chrome.contextMenus.create({
+        "id": "SynoStart",
+        "title": '%s',
+        "contexts":["selection"]
+    },
+    function(){
+        console.log(this.args[0].title);
+    });
+});
+
+
+
+
+
+
+
