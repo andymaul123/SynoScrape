@@ -8,18 +8,11 @@
 "background": {
         "scripts": [
         "jquery-1.11.0.min.js",
-        "contextLaunch.js"]
+        "synoscrape.js"]
     },
 
     "permissions": [
-        "contextMenus",
-        "activeTab",
-        "http://*/",
-        "storage"
-    ],
-
-    "web_accessible_resources": [
-    "script.js"
-  ]
+        "contextMenus"
+    ]
     
 }
