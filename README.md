@@ -1,5 +1,5 @@
 #SynoScrape
-SynoScrape is a scary-sounding, but ultimately friendly, Chrome extension that provides synonyms for highlighted/selected words. I created this extension as a learning experience in writing Google Chrome extensions and web-scraping. SynoScrape uses the Yahoo Query Language (https://developer.yahoo.com/yql/) to access http://www.thesuarus.com/ and scrape results before displaying them back to the user via an alert. Since this may be considered unethical I'm not releasing the extension via the Chrome Web Store. For those interested in learning from it, though, I've decided to upload it here on Github. 
+SynoScrape is a scary-sounding, but ultimately friendly, Chrome extension that provides synonyms for highlighted/selected words. I created this extension as a learning experience in writing Google Chrome extensions and web-scraping. SynoScrape uses the Yahoo Query Language (https://developer.yahoo.com/yql/) to access http://www.thesuarus.com/ and scrape results before displaying them back to the user via an alert. Since this may be considered unethical I'm not releasing the extension to the Chrome Web Store. For those interested in learning from it, though, I've decided to upload it here on Github. 
 
 ###Installation
 Download the .crx file. Open up the Chrome Extensions page in your browser and drop it in to install.
