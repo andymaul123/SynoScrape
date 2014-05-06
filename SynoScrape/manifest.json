@@ -1,18 +1,12 @@
 {
     "manifest_version": 2,
-
     "name": "SynoScrape",
-    "description": "Provides synonyms with just a Ctrl + R-Click!",
+    "description": "Provides synonyms with just a Right Click!",
     "version": "1.0",
 
-"background": {
-        "scripts": [
-        "jquery-1.11.0.min.js",
-        "synoscrape.js"]
-    },
-
-    "permissions": [
-        "contextMenus"
-    ]
+    "icons": { "16": "icon16.png","48": "icon48.png","128": "icon128.png" },
     
+    "background": { "scripts": ["jquery-1.11.0.min.js","synoscrape.js"]},
+
+    "permissions": ["contextMenus"]
 }
