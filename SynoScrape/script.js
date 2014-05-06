@@ -1,14 +1,9 @@
-
-
-window.oncontextmenu = function() {
-    console.log("context was launched, omg!");
-        /*chrome.storage.local.get('wasClicked', function (result) {
-        wasClicked = result.wasClicked;
-        if (wasClicked) {
-            console.log("local storage working!");
-            chrome.storage.local.set({'wasClicked': false});
-            //wipe the local storage of entries to refresh everything
-        }
-    }); */
-    chrome.storage.local.set({'wasFired': true});
+/* Listens for when a user right clicks and logs their selection to local storage. */
+window.onmouseup = function() {
+    var capturedSelection = window.getSelection().toString();
+    if(capturedSelection.length >= 1) {
+        chrome.storage.local.set({'userSelection': capturedSelection});
+        console.log("Script.js ran successfully.");
+    }
 };
+
