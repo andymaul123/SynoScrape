@@ -6,6 +6,7 @@ Download the .crx file. Open up the Chrome Extensions page in your browser and d
 
 ###Use
 Once installed and enabled, select some text and right click it. A SynoScrape item will appear in the context menu. Clicking it will query Thesaurus.com in the background and create an alert that lists up to ten synonyms for your selected word. If more than one word is selected, SynoScrape will cut your selection down to the first word and query using that word only.
+![SynoScrape Example](https://raw.githubusercontent.com/andymaul123/SynoScrape/master/SynoScrape/example.gif)
 
 ###Other
 I originally wanted all of this to occur in a single context menu with children items. This proved to be a pain in the ass, and after several unsuccessful iterations I opted to return to using an alert to serve the results. The main issue was timing the delay from using the YQL query and the creation of the context menu. If you are interested in the non-release and more complicated version of the code, feel free to send me an email at andymaul123@gmail.com.
